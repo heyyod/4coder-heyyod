@@ -148,12 +148,8 @@ F4_Cursor_RenderEmacsStyle(Application_Links *app, View_ID view_id, b32 is_activ
     ColorFlags flags = 0;
     flags |= !!global_keyboard_macro_is_recording * ColorFlag_Macro;
     flags |= !!power_mode.enabled * ColorFlag_PowerMode;
-    ARGB_Color cursor_color = F4_GetColor(app, ColorCtx_Cursor(flags, GlobalKeybindingMode));
-    cursor_color &= 0x00ffffff;
-    cursor_color |= 0xa0000000;
-    ARGB_Color mark_color = cursor_color;
-    mark_color &= 0x00ffffff;
-    mark_color |= 0x50000000;
+    ARGB_Color cursor_color = 0xa0ffff00; //F4_GetColor(app, ColorCtx_Cursor(flags, GlobalKeybindingMode));
+    ARGB_Color mark_color = 0x60808000; //cursor_color;
     ARGB_Color inactive_cursor_color = F4_ARGBFromID(active_color_table, fleury_color_cursor_inactive, 0);
     
     if(!F4_ARGBIsValid(inactive_cursor_color))
@@ -366,8 +362,8 @@ F4_HighlightCursorMarkRange(Application_Links *app, View_ID view_id)
         upper_bound_y = global_last_cursor_rect.y1;
     }
     
-    draw_rectangle(app, Rf32(view_rect.x0, lower_bound_y, view_rect.x0 + 4, upper_bound_y), 3.f,
-                   fcolor_resolve(fcolor_change_alpha(fcolor_id(defcolor_comment), 0.5f)));
+    draw_rectangle(app, Rf32(view_rect.x0, lower_bound_y, view_rect.x0 + 2, upper_bound_y), 3.f,
+                   fcolor_resolve(fcolor_change_alpha(fcolor_id(defcolor_comment), 0.3f)));
     draw_set_clip(app, clip);
 }
 
