@@ -37,12 +37,12 @@ mark_thickness = 2;
 
 // lister_roundess is a value [0,50] setting the radius of
 // the lister items' roundness as a percentage of their height
-lister_roundness = 20;
+lister_roundness = 0;
 
 // Code Wrapping
-treat_as_code = ".cpp.c.hpp.h.cc.cs.java.rs.glsl.m.mm.ds.md.4coder.jai.vert.frag";
+treat_as_code = ".cpp.c.hpp.h.cc.cs.java.rs.glsl.m.mm.md.4coder.vert.frag";
 enable_virtual_whitespace = true;
-virtual_whitespace_regular_indent = 1;
+virtual_whitespace_regular_indent = 4;
 enable_code_wrapping = true;
 
 // This only applies to code files in code-wrapping mode.
@@ -60,13 +60,14 @@ indent_with_tabs = false;
 indent_width = 4;
 default_tab_width = 4;
 
+
 // Theme
-default_theme_name = "theme-fleury";
+default_theme_name = "theme-fleury-heyyod";
 highlight_line_at_cursor = true;
 
 // Font
-default_font_name = "liberation-mono.ttf";
-default_font_size = 14;
+default_font_name = "Inconsolata-Regular.ttf";
+default_font_size = 11;
 default_font_hinting = true;
 
 // aa modes:
@@ -75,7 +76,7 @@ default_font_hinting = true;
 default_font_aa_mode = "8bit";
 
 // User
-user_name = "rjf";
+user_name = "heyyod";
 
 // Keyboard AltGr setting
 lalt_lctrl_is_altgr = false;
