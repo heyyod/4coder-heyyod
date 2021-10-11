@@ -7,10 +7,10 @@ F4_DrawTooltipRect(Application_Links *app, Rect_f32 rect)
     ARGB_Color border_color = fcolor_resolve(fcolor_id(defcolor_margin_active));
     
     background_color &= 0x00ffffff;
-    background_color |= 0xd0000000;
+    background_color |= 0xf0000000;
     
     border_color &= 0x00ffffff;
-    border_color |= 0xd0000000;
+    border_color |= 0xf0000000;
     
     draw_rectangle(app, rect, 4.f, background_color);
     draw_rectangle_outline(app, rect, 4.f, 3.f, border_color);

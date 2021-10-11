@@ -237,37 +237,38 @@ F4_Cursor_RenderEmacsStyle(Application_Links *app, View_ID view_id, b32 is_activ
                 
                 // NOTE(rjf): Draw main cursor.
                 {
-                    C4_RenderCursorSymbolThingy(app, global_cursor_rect, roundness, 4.f, cursor_color, cursor_type);
-					C4_RenderCursorSymbolThingy(app, target_cursor, roundness, 4.f, cursor_color, cursor_type);
+                    C4_RenderCursorSymbolThingy(app, global_cursor_rect, roundness, 2.f, cursor_color, cursor_type);
+					C4_RenderCursorSymbolThingy(app, target_cursor, roundness, 2.f, cursor_color, cursor_type);
                 }
                 
                 // NOTE(rjf): GLOW IT UP
-                for(int glow = 0; glow < 20; ++glow)
-                {
-                    f32 alpha = 0.1f - (power_mode.enabled ? (glow*0.005f) : (glow*0.015f));
-                    if(alpha > 0)
-                    {
-                        Rect_f32 glow_rect = target_cursor;
-                        glow_rect.x0 -= glow;
-                        glow_rect.y0 -= glow;
-                        glow_rect.x1 += glow;
-                        glow_rect.y1 += glow;
-                        C4_RenderCursorSymbolThingy(app, glow_rect, roundness + glow*0.7f, 2.f,
-                                                    fcolor_resolve(fcolor_change_alpha(fcolor_argb(cursor_color), alpha)), cursor_type);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
+                /* 
+                                for(int glow = 0; glow < 20; ++glow)
+                                {
+                                    f32 alpha = 0.1f - (power_mode.enabled ? (glow*0.005f) : (glow*0.015f));
+                                    if(alpha > 0)
+                                    {
+                                        Rect_f32 glow_rect = target_cursor;
+                                        glow_rect.x0 -= glow;
+                                        glow_rect.y0 -= glow;
+                                        glow_rect.x1 += glow;
+                                        glow_rect.y1 += glow;
+                                        C4_RenderCursorSymbolThingy(app, glow_rect, roundness + glow*0.7f, 1.f,
+                                                                    fcolor_resolve(fcolor_change_alpha(fcolor_argb(cursor_color), alpha)), cursor_type);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                 */
                 
             }
             
-            // paint_text_color_pos(app, text_layout_id, cursor_pos,
-            // fcolor_id(defcolor_at_cursor));
-            C4_RenderCursorSymbolThingy(app, global_mark_rect, roundness, 2.f,
+            paint_text_color_pos(app, text_layout_id, cursor_pos, fcolor_id(defcolor_at_cursor));
+            C4_RenderCursorSymbolThingy(app, global_mark_rect, roundness, 1.f,
                                         fcolor_resolve(fcolor_change_alpha(fcolor_argb(mark_color), 0.5f)), mark_type);
-			C4_RenderCursorSymbolThingy(app, target_mark, roundness, 2.f,
+			C4_RenderCursorSymbolThingy(app, target_mark, roundness, 1.f,
                                         fcolor_resolve(fcolor_change_alpha(fcolor_argb(mark_color), 0.75f)), mark_type);
         }
     }
