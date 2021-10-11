@@ -149,7 +149,11 @@ F4_Cursor_RenderEmacsStyle(Application_Links *app, View_ID view_id, b32 is_activ
     flags |= !!global_keyboard_macro_is_recording * ColorFlag_Macro;
     flags |= !!power_mode.enabled * ColorFlag_PowerMode;
     ARGB_Color cursor_color = F4_GetColor(app, ColorCtx_Cursor(flags, GlobalKeybindingMode));
+    cursor_color &= 0x00ffffff;
+    cursor_color |= 0xa0000000;
     ARGB_Color mark_color = cursor_color;
+    mark_color &= 0x00ffffff;
+    mark_color |= 0x50000000;
     ARGB_Color inactive_cursor_color = F4_ARGBFromID(active_color_table, fleury_color_cursor_inactive, 0);
     
     if(!F4_ARGBIsValid(inactive_cursor_color))
@@ -256,7 +260,7 @@ F4_Cursor_RenderEmacsStyle(Application_Links *app, View_ID view_id, b32 is_activ
                                         C4_RenderCursorSymbolThingy(app, glow_rect, roundness + glow*0.7f, 1.f,
                                                                     fcolor_resolve(fcolor_change_alpha(fcolor_argb(cursor_color), alpha)), cursor_type);
                                     }
-                                    else
+                                     else
                                     {
                                         break;
                                     }
@@ -266,9 +270,9 @@ F4_Cursor_RenderEmacsStyle(Application_Links *app, View_ID view_id, b32 is_activ
             }
             
             paint_text_color_pos(app, text_layout_id, cursor_pos, fcolor_id(defcolor_at_cursor));
-            C4_RenderCursorSymbolThingy(app, global_mark_rect, roundness, 1.f,
+            C4_RenderCursorSymbolThingy(app, global_mark_rect, roundness, 2.f,
                                         fcolor_resolve(fcolor_change_alpha(fcolor_argb(mark_color), 0.5f)), mark_type);
-			C4_RenderCursorSymbolThingy(app, target_mark, roundness, 1.f,
+			C4_RenderCursorSymbolThingy(app, target_mark, roundness, 2.f,
                                         fcolor_resolve(fcolor_change_alpha(fcolor_argb(mark_color), 0.75f)), mark_type);
         }
     }
