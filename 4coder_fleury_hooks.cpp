@@ -332,7 +332,6 @@ function void
 F4_DrawFileBar(Application_Links *app, View_ID view_id, Buffer_ID buffer, Face_ID face_id, Rect_f32 bar)
 {
     Scratch_Block scratch(app);
-    
     draw_rectangle_fcolor(app, bar, 0.f, fcolor_id(defcolor_bar));
     
     FColor base_color = fcolor_id(defcolor_base);
@@ -347,8 +346,7 @@ F4_DrawFileBar(Application_Links *app, View_ID view_id, Buffer_ID buffer, Face_I
     push_fancy_stringf(scratch, &list, base_color, " - Row: %3.lld Col: %3.lld -", cursor.line, cursor.col);
     
     Managed_Scope scope = buffer_get_managed_scope(app, buffer);
-    Line_Ending_Kind *eol_setting = scope_attachment(app, scope, buffer_eol_setting,
-                                                     Line_Ending_Kind);
+    Line_Ending_Kind *eol_setting = scope_attachment(app, scope, buffer_eol_setting, Line_Ending_Kind);
     switch (*eol_setting){
         case LineEndingKind_Binary:
         {
@@ -385,9 +383,6 @@ F4_DrawFileBar(Application_Links *app, View_ID view_id, Buffer_ID buffer, Face_I
     push_fancy_string(scratch, &list, base_color, S8Lit(" Syntax Mode: "));
     push_fancy_string(scratch, &list, base_color, F4_SyntaxOptionString());
     
-    Vec2_f32 p = bar.p0 + V2f32(2.f, 2.f);
-    draw_fancy_line(app, face_id, fcolor_zero(), &list, p);
-    
     if(!def_get_config_b32(vars_save_string_lit("f4_disable_progress_bar")))
     {
         f32 progress = (f32)cursor.line / (f32)buffer_get_line_count(app, buffer);
@@ -399,11 +394,15 @@ F4_DrawFileBar(Application_Links *app, View_ID view_id, Buffer_ID buffer, Face_I
             bar.y1,
         };
         ARGB_Color progress_bar_color = fcolor_resolve(fcolor_id(fleury_color_file_progress_bar));
+        //ARGB_Color progress_bar_color = 0x30ffffff;
         if(F4_ARGBIsValid(progress_bar_color))
         {
             draw_rectangle(app, progress_bar_rect, 0, progress_bar_color);
         }
     }
+    
+    Vec2_f32 p = bar.p0 + V2f32(2.f, 2.f);
+    draw_fancy_line(app, face_id, fcolor_zero(), &list, p);
 }
 
 function void

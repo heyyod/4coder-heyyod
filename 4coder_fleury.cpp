@@ -1,7 +1,7 @@
 //~ @f4_readme Ryan Fleury's 4coder Custom Layer
 //
 // Hello! Thank you for checking out my custom layer. This layer is a collection
-// of things I've found to be useful, funny, or interesting overtime. It includes
+// of things I've found to be useful, funny, or interesting overtime. It includesaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 // a few things that makes 4coder feel a bit more like an IDE, a few things that
 // are just for kicks and are ridiculous, and a few interesting editor experiments.
 // Below is a list of features, along with more information about them and some
